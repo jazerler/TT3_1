@@ -43,11 +43,13 @@
   background: #474747;
   color: "black";
   margin: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  /* display: flex; */
-  align-items: left;
-  /*justify-content: space-between; */
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 200px;
+  /* cursor: pointer; */
+  /* display: flex;
+  align-items: left; */
+  justify-content: left; 
 
 }
 
@@ -61,7 +63,7 @@
   background-color: white;
   color: black;
   height: 450px;
-  width: 370px;
+  width: 430px;
   padding-left: 20px;
 }
 
@@ -69,14 +71,27 @@
   position: absolute;
   right: -15px;
   top: 30%;
-  width: 3700px;
 }
 
-.username-label-modal {
-  width: 3700px;
+.modify-modal {
+  position: relative;
+  right: -300px;
+  top: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  height: 200px;
+  width: 100px;
+  padding-left: 20px;
 }
 
-
+.new-claim-modal {
+  position: absolute;
+  right: 40px;
+  top: 5%;
+}
 
 @keyframes App-logo-spin {
   from {

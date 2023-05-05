@@ -43,6 +43,7 @@ function Login(props) {
           });
     
           navigate('/dashboard')
+          console.log(response.body)
           // get access token
         } catch (err) {
           setError("Backend not setup");

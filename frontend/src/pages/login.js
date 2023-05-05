@@ -47,24 +47,23 @@ function Login(props) {
           navigate('/dashboard')
           // get access token
         } catch (err) {
-          setError("Backend not setup");
+          setError({errorText});
         }
     };
 
     return (
         <div className="App Background">
             <div className='login-modal'>
-                <image path='../images/dbs_login.png'></image>
                 <br />
                 <form>
                 <div className="input-group username-password-modal">
-                    <label htmlFor="username">Username: </label>
+                    <label htmlFor="username">Username: </label> <br />
                     <input type="text" size="26" id="username" value={user}
                     onChange={e => setUser(e.target.value)} />
                 </div>
                 <br />
                 <div className="input-group username-password-modal">
-                    <label htmlFor="password">Password: </label>
+                    <label htmlFor="password">Password: </label> <br />
                     <input type="password" size="26" id="password" value={password}
                     onChange={e => setPassword(e.target.value)} />
                 </div>

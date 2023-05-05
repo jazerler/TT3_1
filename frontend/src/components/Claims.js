@@ -33,7 +33,7 @@ const Claims = (props) => {
   const [claimsList, setClaims] = useState(claims)
 
   const handleRetriveClaim = async (event) => {
-    
+
     let formData = new FormData();
     formData.append('EmployeeID', props.user)
 
@@ -64,7 +64,7 @@ const Claims = (props) => {
 
   return (
       <>
-        {claims.map((claim)=> (
+        {claimsList.map((claim)=> (
             <Claim key = {claim.ProjectId} claim = {claim} /> 
         ))}
       </>

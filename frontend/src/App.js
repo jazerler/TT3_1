@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { RequireAuth } from 'react-auth-kit'
 import { Login } from './pages/login'
+import { Dashboard } from './pages/dashboard';
 
 function App() {
   const [user, setUser] = useState('')
@@ -16,7 +17,11 @@ function App() {
       <header className="App-header">
         <Routes>
           <Route path='/' element={<Login setUser={setUser} />} />
-          <Route path='/dashboard' element={<RequireAuth loginPath='/' />} />
+          <Route path='/dashboard' element={
+          // <RequireAuth loginPath='/'>
+            <Dashboard></Dashboard>
+          // </RequireAuth>} 
+          }/>
         </Routes>
       </header>
     </div>

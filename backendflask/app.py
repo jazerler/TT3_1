@@ -29,8 +29,12 @@ def retrieve_user():
     try:
         EmployeeID = request.form['EmployeeID']
         Password = request.form['Password']
-        d = connector.login(EmployeeID, Password)
-        return d, 200
+        result = connector.login(EmployeeID, Password)
+        if result: 
+            access_token = create_access_token(identity=EmployeeID)
+            return jsonify(access_token=access_token), 200 
+        else:
+            return "", 401
     
     except (MySQLdb.Error, MySQLdb.Warning) as e:
         return str(e), 502

@@ -18,6 +18,6 @@ class Connector:
         cursor.execute(" SELECT * FROM employee WHERE EmployeeID = %s AND Password = %s",(EmployeeID,Password))
         d = cursor.fetchall()
         if not d: 
-            return "", 204
+            return None
         cursor.close()
         return json.dumps(d)

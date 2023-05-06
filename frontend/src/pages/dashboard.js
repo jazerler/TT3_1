@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Claims from "../components/Claims.js";
 
 function Dashboard(props) {
     const [] = useState()

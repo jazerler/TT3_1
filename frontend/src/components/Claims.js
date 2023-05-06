@@ -45,7 +45,7 @@ const Claims = (props) => {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            'Authorization': sessionStorage.getItem('jwt')
+            'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
           },
           body: JSON.stringify(payload)
         }

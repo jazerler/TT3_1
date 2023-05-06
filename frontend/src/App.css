@@ -39,6 +39,18 @@
   color: #61dafb;
 }
 
+.claim {
+  background: #474747;
+  color: "black";
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  /* display: flex; */
+  align-items: left;
+  /*justify-content: space-between; */
+
+}
+
 .login-modal {
   position: absolute;
   right: 0px;

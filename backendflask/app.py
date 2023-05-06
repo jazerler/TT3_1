@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from db import Connector
 from flask_mysqldb import MySQLdb
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
@@ -13,24 +13,30 @@ jwt = JWTManager(app)
 
 connector = Connector(app)
 
-@app.route('/retrieve', methods=['POST'])
-def retrieve_userbyID():
-    try:
-        EmployeeID = request.form['EmployeeID']
-        d = connector.retrieve(EmployeeID)
-        return d, 200
+# @app.route('/retrieve', methods=['POST'])
+# def retrieve_userbyID():
+#     try:
+#         EmployeeID = request.form['EmployeeID']
+#         d = connector.retrieve(EmployeeID)
+#         return d, 200
     
-    except (MySQLdb.Error, MySQLdb.Warning) as e:
-        return str(e), 502
+#     except (MySQLdb.Error, MySQLdb.Warning) as e:
+#         return str(e), 502
     
-    except Exception as e:
-        return str(e), 500
+#     except Exception as e:
+#         return str(e), 500
     
 @app.route('/login', methods=['POST'])
+@cross_origin()
 def retrieve_user():
     try:
-        EmployeeID = request.form['EmployeeID']
-        Password = request.form['Password']
+        print(request.form)
+        # EmployeeID = request.form['EmployeeID']
+        # Password = request.form['Password']
+        data = request.json
+        EmployeeID = data.get('EmployeeID')
+        Password = data.get('Password')
+        print(EmployeeID, Password)
         result = connector.login(EmployeeID, Password)
         if result: 
             access_token = create_access_token(identity=EmployeeID)
@@ -50,7 +56,9 @@ def retrieve_user():
 def retrieveClaim():
     try:
         current_user = get_jwt_identity()
-        EmployeeID = request.form['EmployeeID']
+        data = request.json
+        EmployeeID = data.get('EmployeeID')
+                              
         if current_user != EmployeeID:
             return "", 401
         else:

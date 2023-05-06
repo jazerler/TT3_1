@@ -34,7 +34,13 @@ function Login(props) {
           if (response.status !== 200) {
             throw "Email or password mismatch"
           }
-          sessionStorage.setItem('jwt', response.headers.get('Authorization'));
+          
+          response.json().then((res) => {
+            setToken(res)
+            console.log(res)
+            sessionStorage.setItem('jwt', res["access_token"]);
+          })
+
           signIn({
             token: response.headers.get('Authorization'),
             expiresIn: 3600,

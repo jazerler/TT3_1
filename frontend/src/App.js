@@ -18,9 +18,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Login setUser={setUser} />} />
           <Route path='/dashboard' element={
-          // <RequireAuth loginPath='/'>
+          <RequireAuth loginPath='/'>
             <Dashboard user={user}></Dashboard>
-          // </RequireAuth>} 
+          </RequireAuth>
           }/>
         </Routes>
       </header>

@@ -6,6 +6,7 @@ class Connector:
     def __init__(self, app):
         self.mysql = MySQL(app)
     
+    #Convert to json format
     def jsonData(self, cursor, d):
         row_headers=[x[0] for x in cursor.description] #this will extract row headers
         json_data=[]
@@ -13,13 +14,13 @@ class Connector:
                 json_data.append(dict(zip(row_headers,result)))
         return json_data
     
-    def retrieve(self, EmployeeID):
-        cursor = self.mysql.connection.cursor()
-        cursor.execute(" SELECT * FROM employee WHERE EmployeeID = %s ",(EmployeeID,))
-        d = cursor.fetchall()
-        # json_data = self.jsonData(cursor, d)
-        cursor.close()
-        return json.dumps(d)
+    # def retrieve(self, EmployeeID):
+    #     cursor = self.mysql.connection.cursor()
+    #     cursor.execute(" SELECT * FROM employee WHERE EmployeeID = %s ",(EmployeeID,))
+    #     d = cursor.fetchall()
+    #     # json_data = self.jsonData(cursor, d)
+    #     cursor.close()
+    #     return json.dumps(d)
     
     def login(self, EmployeeID, Password):
         cursor = self.mysql.connection.cursor()

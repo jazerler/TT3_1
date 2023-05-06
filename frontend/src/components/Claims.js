@@ -34,8 +34,9 @@ const Claims = (props) => {
 
   const handleRetriveClaim = async (event) => {
 
-    let formData = new FormData();
-    formData.append('EmployeeID', props.user)
+    let payload = {
+      "EmployeeID": props.user
+    }
 
     try {
       const response = await fetch(
@@ -43,9 +44,10 @@ const Claims = (props) => {
         {
           method: 'POST',
           headers: {
-            'content-type': 'multipart/form-data'
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
           },
-          body: formData
+          body: JSON.stringify(payload)
         }
       ).then((res) => {
         return res.json

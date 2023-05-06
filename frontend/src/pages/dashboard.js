@@ -21,9 +21,6 @@ function Dashboard(props) {
                 onClick={() => setShowModal(!showModal)}>
                 New Claim
             </div>
-            <Modal show={showModal}>
-                <Newclaim />
-            </Modal>
 {/* 
             <Popup trigger={<button
                 type="button"

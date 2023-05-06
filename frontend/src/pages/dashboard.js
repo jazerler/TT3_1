@@ -1,5 +1,7 @@
-function Dashboard(props) {
+import { useState } from "react";
 
+function Dashboard(props) {
+    const [] = useState()
 
     return (
         <>

@@ -19,7 +19,7 @@ function App() {
           <Route path='/' element={<Login setUser={setUser} />} />
           <Route path='/dashboard' element={
           // <RequireAuth loginPath='/'>
-            <Dashboard></Dashboard>
+            <Dashboard user={user}></Dashboard>
           // </RequireAuth>} 
           }/>
         </Routes>

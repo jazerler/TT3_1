@@ -1,8 +1,6 @@
 import React from 'react';
 import Claim from '../components/Claim.js';
 
-
-
 const claims = [
     {
       "username": "John Doe",

@@ -61,7 +61,7 @@
   background-color: white;
   color: black;
   height: 450px;
-  width: 370px;
+  width: 430px;
   padding-left: 20px;
 }
 
@@ -69,11 +69,6 @@
   position: absolute;
   right: -15px;
   top: 30%;
-  width: 3700px;
-}
-
-.username-label-modal {
-  width: 3700px;
 }
 
 

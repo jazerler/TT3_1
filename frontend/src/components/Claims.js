@@ -43,9 +43,11 @@ const Claims = (props) => {
         {
           method: 'POST',
           headers: {
-            'content-type': 'multipart/form-data'
+            'content-type': 'application/json'
           },
-          body: formData
+          body: JSON.stringify({
+            
+          })
         }
       ).then((res) => {
         return res.json

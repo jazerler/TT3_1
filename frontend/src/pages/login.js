@@ -7,6 +7,7 @@ function Login(props) {
     const [errorText, setError] = useState('');
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
+    const [token, setToken] = useState("");
 
     const signIn = useSignIn();
     const navigate = useNavigate();
@@ -14,10 +15,6 @@ function Login(props) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError("");
-
-        let formData = new FormData();
-        formData.append('EmployeeID', user)
-        formData.append('Password', password)
     
         try {
           const response = await fetch(
@@ -25,12 +22,15 @@ function Login(props) {
             {
               method: 'POST',
               headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'application/json'
               },
-              body: formData
+              body: JSON.stringify({
+                "EmployeeID" : user,
+                "Password" : password
+              })
             }
           ).then((res) => {
-            console.log(res)
+            console.log(res.body)
           });
     
           if (response.status !== 200) {
@@ -47,7 +47,7 @@ function Login(props) {
           navigate('/dashboard')
           // get access token
         } catch (err) {
-          setError({errorText});
+          setError("Error");
         }
     };
 

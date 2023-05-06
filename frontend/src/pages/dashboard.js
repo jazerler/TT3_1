@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Claims from "../components/Claims.js";
 import Newclaim from "../components/Claims.js";
-import Modal  from "react-bootstrap/Modal";
 
 function Dashboard(props) {
     const [showModal, setShowModal] = useState(false)
@@ -21,9 +20,6 @@ function Dashboard(props) {
                 onClick={() => setShowModal(!showModal)}>
                 New Claim
             </div>
-            <Modal show={showModal}>
-                <Newclaim />
-            </Modal>
 {/* 
             <Popup trigger={<button
                 type="button"

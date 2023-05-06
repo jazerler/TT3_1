@@ -65,6 +65,17 @@
   padding-left: 20px;
 }
 
+.username-password-modal {
+  position: absolute;
+  right: -15px;
+  top: 30%;
+  width: 3700px;
+}
+
+.username-label-modal {
+  width: 3700px;
+}
+
 
 
 @keyframes App-logo-spin {

@@ -87,6 +87,12 @@
   padding-left: 20px;
 }
 
+.new-claim-modal {
+  position: absolute;
+  right: 40px;
+  top: 5%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

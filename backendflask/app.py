@@ -60,3 +60,30 @@ def retrieveClaim():
     except Exception as e:
         return str(e), 500
     
+@app.route('/transactions/edit', methods=['POST'])
+def editClaim():
+    try:
+        ClaimID = request.form['ClaimID']
+        ExpenseDate = request.form['ExpenseDate']
+        Amount = request.form['Amount']
+        Purpose = request.form['Purpose']
+        ChargeToDefaultDept = request.form['ChargeToDefaultDept']
+        AlternativeDeptCode = request.form['AlternativeDeptCode']
+        Status = request.form['Status']
+        CurrencyID = request.form['CurrencyID']
+
+        result = connector.editClaim(ClaimID,ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID)
+
+        if result:
+            return "", 200
+        else:
+            return "", 404
+    
+    except (MySQLdb.Error, MySQLdb.Warning) as e:
+        return str(e), 502
+    
+    except Exception as e:
+        return str(e), 500
+    
+if __name__ == "__main__":
+    app.run(debug=True)

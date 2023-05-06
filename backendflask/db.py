@@ -1,5 +1,6 @@
 from flask_mysqldb import MySQL 
 import json
+import datetime
 
 class Connector:
     def __init__(self, app):
@@ -38,3 +39,14 @@ class Connector:
         json_data = self.jsonData(cursor, d)
         cursor.close()
         return json.dumps(json_data)
+
+    def editClaim(self, ClaimID,ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID):
+        cursor = self.mysql.connection.cursor()
+        ExpenseDate = datetime.datetime.strptime(ExpenseDate, "%d/%m/%y %H:%M:%S")
+        cursor.execute("UPDATE projectexpenseclaims \
+            SET ExpenseDate = %s,Amount = %s,Purpose = %s,ChargeToDefaultDept = %s,AlternativeDeptCode = %s,Status = %s, LastEditedClaimDate = CURDATE(), CurrencyID = %s\
+                WHERE  ClaimID = %s",\
+                (ExpenseDate,Amount,Purpose,bool(ChargeToDefaultDept),AlternativeDeptCode,Status, CurrencyID, ClaimID))
+        self.mysql.connection.commit()
+        cursor.close()
+        return ""

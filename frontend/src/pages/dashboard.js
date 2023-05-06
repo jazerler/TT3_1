@@ -7,9 +7,9 @@ function Dashboard(props) {
     const [showModal, setShowModal] = useState(false)
 
     return (
-        <div>
+        <div className="BackgroundJewel">
             <header>
-                <h1>Welcome, {props.user}</h1>
+                <h1 style={{color:"black"}}>Welcome, {props.user}</h1>
                 <h2 style={{textAlign:'left'}}>Your claim records:</h2>
             </header>
 

@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 from db import Connector
 from flask_mysqldb import MySQLdb
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config.from_pyfile("dbconfig.py")
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
@@ -42,7 +44,7 @@ def retrieve_user():
     except Exception as e:
         return str(e), 500
 
-# create dashboard route
+# create retrieve claim
 @app.route('/retrieveClaim', methods=['POST'])
 def retrieveClaim():
     try:
@@ -57,3 +59,4 @@ def retrieveClaim():
     
     except Exception as e:
         return str(e), 500
+    

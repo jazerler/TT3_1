@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "react-auth-kit";
+import 'bootstrap/dist/css/bootstrap.css'
 
 function Login(props) {
     const [errorText, setError] = useState("");
@@ -59,10 +60,20 @@ function Login(props) {
                 <input type="password" id="password" value={password}
                 onChange={e => setPassword(e.target.value)} />
               </div>
-              <button type="login" className="submit-btn">
-                Log in
-              </button>
-              {errorText}
+              <div button
+                type="button"
+                className="btn btn-danger btn-lg"
+                style={{ height: 50, width: 325 }}
+              >
+                Login
+              </div>
+              <div button
+                type="button"
+                className="btn btn-outline-danger btn-lg"
+                style={{ height: 50, width: 325 }}
+              >
+                Get Started
+              </div>
             </form>
           </div>
     )

@@ -39,6 +39,14 @@
   color: #61dafb;
 }
 
+.login-modal {
+  position: absolute;
+  right: 0px;
+  top: 30%;
+  display: flex;
+  justify-content: center;
+}
+
 
 
 @keyframes App-logo-spin {

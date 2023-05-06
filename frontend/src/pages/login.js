@@ -29,14 +29,12 @@ function Login(props) {
                 "Password" : password
               })
             }
-          ).then((res) => {
-            console.log(res.body)
-          });
+          )
     
           if (response.status !== 200) {
             throw "Email or password mismatch"
           }
-    
+          sessionStorage.setItem('jwt', response.headers.get('Authorization'));
           signIn({
             token: response.headers.get('Authorization'),
             expiresIn: 3600,

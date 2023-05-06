@@ -73,7 +73,25 @@
   top: 30%;
 }
 
+.modify-modal {
+  position: relative;
+  right: -300px;
+  top: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  height: 200px;
+  width: 100px;
+  padding-left: 20px;
+}
 
+.new-claim-modal {
+  position: absolute;
+  right: 40px;
+  top: 5%;
+}
 
 @keyframes App-logo-spin {
   from {

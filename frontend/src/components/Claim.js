@@ -8,6 +8,12 @@ const Claim = ({claim}) => {
             <p style={{textAlign:'left'}}> {`Status: ${claim.status} |
             Claim ID: ${claim.claimID} | Currency: ${claim.currencyID}`}
             </p>
+            <div button
+                type="button"
+                className="btn btn-secondary btn-lg modify-modal"
+                style={{ height: 50, width: 200 }}>
+                Modify
+            </div>
     
         </div>
     )

@@ -12,6 +12,12 @@ function Dashboard(props) {
             
             <Claims user={props.user}/>
 
+            <div button
+                type="button"
+                className="btn btn-secondary btn-lg new-claim-modal"
+                style={{ height: 50, width: 200 }}>
+                New Claim
+            </div>
 
         </div>
         

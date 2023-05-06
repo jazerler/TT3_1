@@ -5,15 +5,16 @@ import mysql.connector
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",
+    password="**",
     database="expenseclaimsdata"
     )
 
-mycursor = db.cursor()
-db.commit()
-db.close()
 
-print('Successful connection!')
+mycursor = db.cursor()
+# db.commit()
+# db.close()
+
+# print('Successful connection!')
 
 app = Flask(__name__)
 
@@ -23,8 +24,6 @@ def login():
     try:
         username = request.form['Uname']
         password = request.form['Pass']
-        emptyscores = []
-
     except ValueError:
         pass
     
@@ -38,6 +37,27 @@ def login():
         loginID = x[0]
         username = x[1]
     return "Hello World"
+
+
+# create dashboard route
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    try:
+        username = request.form['Uname']
+    except ValueError:
+        pass
+    
+    mycursor.execute(
+        "SELECT claimid, projectid, status, currencyid FROM projectexpenseclaims WHERE employeeId ='" + username + "'")
+    myresult = mycursor.fetchall()
+
+    for x in myresult:
+        claimid = x[0]
+        projectid = x[1]      
+        status = x[2]
+        currencyid = x[3]
+
+    return claimid, projectid, status, currencyid
 
 
 # Main method

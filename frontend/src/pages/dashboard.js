@@ -34,7 +34,7 @@ function Dashboard(props) {
         <div>
             <header>
                 <h1>Welcome, Username</h1>
-                <h2>Your claim records:</h2>
+                <h2 style={{textAlign:'left'}}>Your claim records:</h2>
             </header>
             
             <Claims />

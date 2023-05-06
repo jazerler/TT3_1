@@ -43,11 +43,13 @@
   background: #474747;
   color: "black";
   margin: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  /* display: flex; */
-  align-items: left;
-  /*justify-content: space-between; */
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 200px;
+  /* cursor: pointer; */
+  /* display: flex;
+  align-items: left; */
+  justify-content: left; 
 
 }
 

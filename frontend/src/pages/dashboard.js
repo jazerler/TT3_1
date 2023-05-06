@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Claims from "../components/Claims.js";
-import Newclaim from "../components/Claims.js";
+import Newclaim from "../components/Newclaim.js";
 import Modal  from "react-bootstrap/Modal";
 
 function Dashboard(props) {

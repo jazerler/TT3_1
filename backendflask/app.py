@@ -41,3 +41,19 @@ def retrieve_user():
     
     except Exception as e:
         return str(e), 500
+
+# create dashboard route
+@app.route('/retrieveClaim', methods=['POST'])
+def retrieveClaim():
+    try:
+        EmployeeID = request.form['EmployeeID']
+        result = connector.retrieveClaim(EmployeeID)
+        if result:
+            return result
+        else:
+            return "", 404
+    except (MySQLdb.Error, MySQLdb.Warning) as e:
+        return str(e), 502
+    
+    except Exception as e:
+        return str(e), 500

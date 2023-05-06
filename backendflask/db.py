@@ -21,3 +21,12 @@ class Connector:
             return None
         cursor.close()
         return json.dumps(d)
+    
+    def retrieveClaim(self, EmployeeID):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute(" SELECT claimID, ProjectId, status, currencyID FROM projectexpenseclaims WHERE EmployeeID= %s",(EmployeeID,))
+        d = cursor.fetchall()
+        if not d: 
+            return None
+        cursor.close()
+        return json.dumps(d)

@@ -116,7 +116,28 @@ def editClaim():
         else:
             result = connector.editClaim(ClaimID, EmployeeID, ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID)
 
-        print(result)
+        
+        if result:
+            return "", 200
+        else:
+            return "", 404
+    except (MySQLdb.Error, MySQLdb.Warning) as e:
+        return str(e), 502
+    
+    except Exception as e:
+        return str(e), 500
+    
+@app.route('/deleteClaim', methods=['POST'])
+@jwt_required()
+def deleteClaim():
+    try:
+        current_user = get_jwt_identity()
+        claimID = request.form['claimID']
+        EmployeeID = request.form['EmployeeID']
+        if current_user != EmployeeID:
+            return "", 401
+        else:
+            result = connector.deleteClaim(claimID, EmployeeID)
         if result:
             return "", 200
         else:

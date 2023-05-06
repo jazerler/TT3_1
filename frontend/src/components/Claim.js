@@ -12,7 +12,7 @@ const Claim = ({claim}) => {
                 type="button"
                 className="btn btn-secondary btn-lg modify-modal"
                 style={{ height: 50, width: 200 }}>
-                Modify
+                Edit Claim
             </div>
     
         </div>

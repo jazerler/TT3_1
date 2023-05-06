@@ -47,6 +47,7 @@ class Connector:
         cursor.execute('''INSERT INTO projectexpenseclaims VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ''',(claimID,projectid,EmployeeID,currencyid,expensedate,amount,purpose,chargetodefaultdept,alternativedeptcode,status,lasteditedclaimdate))
         self.mysql.connection.commit()
         cursor.close()
+        
 
     def editClaim(self, ClaimID, EmployeeID, ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID):
         cursor = self.mysql.connection.cursor()
@@ -58,4 +59,11 @@ class Connector:
         self.mysql.connection.commit()
         cursor.close()
         return "edited"
+    
+    def deleteClaim(self, claimID, EmployeeID):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute("DELETE FROM projectexpenseclaims WHERE claimID = %s AND employeeID = %s",(claimID,EmployeeID))
+        self.mysql.connection.commit()
+        cursor.close()
+        return "deleted"
     

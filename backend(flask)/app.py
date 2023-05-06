@@ -59,6 +59,43 @@ def dashboard():
 
     return claimid, projectid, status, currencyid
 
+# create transactions route, createclaim
+@app.route('/transactions/createclaim', methods=['GET', 'POST'])
+def transactions():
+    try:
+        projectid = request.form['projectid']
+        employeeid = request.form['employeeid']
+        currencyid = request.form['currencyid']
+        expensedate = request.form['expensedate']
+        amount = request.form['amount']
+        purpose = request.form['purpose']
+        chargetodefaultdept = request.form['chargetodefaultdept']
+        alternativedeptcode = request.form['alternativedeptcode']
+        status = request.form['status']
+        lasteditedclaimdate = request.form['lasteditedclaimdate']
+
+    except ValueError:
+        pass
+    
+    # create a new claim
+    mycursor.execute("INSERT INTO projectexpenseclaims (projectid, employeeid, currencyid, expensedate, amount, purpose, chargetodefaultdept, alternativedeptcode, status, lasteditedclaimdate) VALUES ('" + projectid, employeeid, currencyid, expensedate, amount, purpose, chargetodefaultdept, alternativedeptcode, status, lasteditedclaimdate + "')")
+
+    return
+
+
+# create transactions route, createclaim
+@app.route('/transactions/deleteclaim', methods=['GET', 'POST'])
+def transactions():
+    try:
+        claimID = request.form['claimid']
+
+    except ValueError:
+        pass
+    
+    # delete claim
+    mycursor.execute("DELETE FROM projectexpenseclaims WHERE claimID = '" + claimID + "')")
+    
+    return
 
 # Main method
 if __name__ == '__main__':

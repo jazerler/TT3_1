@@ -39,14 +39,23 @@ class Connector:
         json_data = self.jsonData(cursor, d)
         cursor.close()
         return json.dumps(json_data)
+    
+    def addClaim(self, claimID,projectid,EmployeeID,currencyid,expensedate,amount,purpose,chargetodefaultdept,alternativedeptcode,status,lasteditedclaimdate):
+        cursor = self.mysql.connection.cursor()
+        expensedate = datetime.datetime.strptime(expensedate, "%d/%m/%y %H:%M:%S")
+        chargetodefaultdept = bool(chargetodefaultdept)
+        cursor.execute('''INSERT INTO projectexpenseclaims VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ''',(claimID,projectid,EmployeeID,currencyid,expensedate,amount,purpose,chargetodefaultdept,alternativedeptcode,status,lasteditedclaimdate))
+        self.mysql.connection.commit()
+        cursor.close()
 
-    def editClaim(self, ClaimID,ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID):
+    def editClaim(self, ClaimID, EmployeeID, ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID):
         cursor = self.mysql.connection.cursor()
         ExpenseDate = datetime.datetime.strptime(ExpenseDate, "%d/%m/%y %H:%M:%S")
         cursor.execute("UPDATE projectexpenseclaims \
             SET ExpenseDate = %s,Amount = %s,Purpose = %s,ChargeToDefaultDept = %s,AlternativeDeptCode = %s,Status = %s, LastEditedClaimDate = CURDATE(), CurrencyID = %s\
-                WHERE  ClaimID = %s",\
-                (ExpenseDate,Amount,Purpose,bool(ChargeToDefaultDept),AlternativeDeptCode,Status, CurrencyID, ClaimID))
+                WHERE  ClaimID = %s AND EmployeeID = %s",\
+                (ExpenseDate,Amount,Purpose,bool(ChargeToDefaultDept),AlternativeDeptCode,Status, CurrencyID, ClaimID, EmployeeID))
         self.mysql.connection.commit()
         cursor.close()
-        return ""
+        return "edited"
+    

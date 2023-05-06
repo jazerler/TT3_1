@@ -46,10 +46,15 @@ def retrieve_user():
 
 # create retrieve claim
 @app.route('/retrieveClaim', methods=['POST'])
+@jwt_required()
 def retrieveClaim():
     try:
+        current_user = get_jwt_identity()
         EmployeeID = request.form['EmployeeID']
-        result = connector.retrieveClaim(EmployeeID)
+        if current_user != EmployeeID:
+            return "", 401
+        else:
+            result = connector.retrieveClaim(EmployeeID)
         if result:
             return result
         else:
@@ -60,9 +65,44 @@ def retrieveClaim():
     except Exception as e:
         return str(e), 500
     
-@app.route('/transactions/edit', methods=['POST'])
+@app.route('/addClaim', methods=['POST'])
+@jwt_required()
+def addClaim():
+    try:
+        current_user = get_jwt_identity()
+        claimID = request.form['claimID']
+        projectid = request.form['projectid']
+        EmployeeID = request.form['EmployeeID']
+        currencyid = request.form['currencyid']
+        expensedate = request.form['expensedate']
+        amount = request.form['amount']
+        purpose = request.form['purpose']
+        chargetodefaultdept = request.form['chargetodefaultdept']
+        alternativedeptcode = request.form['alternativedeptcode']
+        status = request.form['status']
+        lasteditedclaimdate = request.form['lasteditedclaimdate']
+        if current_user != EmployeeID:
+            return "", 401
+        else:
+            result = connector.addClaim(claimID,projectid,EmployeeID,currencyid,expensedate,amount,purpose,chargetodefaultdept,alternativedeptcode,status,lasteditedclaimdate)
+        if result:
+            return result
+        else:
+            return "", 404
+
+    except (MySQLdb.Error, MySQLdb.Warning) as e:
+        return str(e), 502
+    
+    except Exception as e:
+        return str(e), 500
+
+
+@app.route('/editClaim', methods=['POST'])
+@jwt_required()
 def editClaim():
     try:
+        current_user = get_jwt_identity()
+        EmployeeID = request.form['EmployeeID']
         ClaimID = request.form['ClaimID']
         ExpenseDate = request.form['ExpenseDate']
         Amount = request.form['Amount']
@@ -71,19 +111,23 @@ def editClaim():
         AlternativeDeptCode = request.form['AlternativeDeptCode']
         Status = request.form['Status']
         CurrencyID = request.form['CurrencyID']
+        if current_user != EmployeeID:
+            return "", 401
+        else:
+            result = connector.editClaim(ClaimID, EmployeeID, ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID)
 
-        result = connector.editClaim(ClaimID,ExpenseDate,Amount,Purpose,ChargeToDefaultDept,AlternativeDeptCode,Status, CurrencyID)
-
+        print(result)
         if result:
             return "", 200
         else:
             return "", 404
-    
     except (MySQLdb.Error, MySQLdb.Warning) as e:
         return str(e), 502
     
     except Exception as e:
         return str(e), 500
+
+
     
 if __name__ == "__main__":
     app.run(debug=True)

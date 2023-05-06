@@ -29,7 +29,9 @@ function Login(props) {
               },
               body: formData
             }
-          );
+          ).then((res) => {
+            console.log(res)
+          });
     
           if (response.status !== 200) {
             throw "Email or password mismatch"
@@ -43,7 +45,6 @@ function Login(props) {
           });
     
           navigate('/dashboard')
-          console.log(response.body)
           // get access token
         } catch (err) {
           setError("Backend not setup");

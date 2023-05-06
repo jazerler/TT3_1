@@ -16,7 +16,7 @@ function App() {
       <header className="App-header">
         <Routes>
           <Route path='/' element={<Login setUser={setUser} />} />
-          <Route path='/dashboard' element={<RequireAuth loginPath='/login' />} />
+          <Route path='/dashboard' element={<RequireAuth loginPath='/' />} />
         </Routes>
       </header>
     </div>
